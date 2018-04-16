@@ -6,7 +6,7 @@
 
 使用长度不定的**属性**列表并用大括号包裹起来 `{...}` 就可以创建一个对象。属性是 “key: value”（键值对）的组合，其中 `key` 可以是一个字符串（同样可以称之为“属性名称”），`value` 可以为任何值。
 
-我们可以把一个对象想象成一个具有签名文件的橱柜。每一部分数据都可以通过键来存储到文件中，这样通过名称来查找文件或者添加和删除都易如反掌。
+我们可以把一个对象想象成一个具有签名文件的橱柜。每一部分数据都可以通过键名来存储到文件中，这样通过名称来查找文件或者添加和删除都易如反掌。
 
 ![object image file](object.png)
 
@@ -17,43 +17,43 @@ let user = new Object(); // "object constructor" 语法
 let user = {};  // "object literal" 语法
 ```
 
-![](object-user-empty.png)
+![empty user object](object-user-empty.png)
 
 通常使用括号 `{...}` 的声明被称为**对象字面量**。
 
-## Literals and properties
+## 字面和属性
 
-We can immediately put some properties into `{...}` as "key: value" pairs:
+我们现在就可以把一些属性用键值对的形式放到 `{...}` 中：
 
 ```js
-let user = {     // an object
-  name: "John",  // by key "name" store value "John"
-  age: 30        // by key "age" store value 30
+let user = {     // 一个对象
+  name: "John",  // 通过键名 “name” 存储值 “John”
+  age: 30        // 通过键名 “age” 存储值 30
 };
 ```
 
-A property has a key (also known as "name" or "identifier") before the colon `":"` and a value to the right of it.
+一个属性在冒号 `“:”` 前有一个键（同样可以称之为“名称”或者“标识符”），右面放置它的值。
 
-In the `user` object, there are two properties:
+在 `user` 对象中，有两个属性：
 
-1. The first property has the name `"name"` and the value `"John"`.
-2. The second one has the name `"age"` and the value `30`.
+1. 第一个属性的名称是 `"name"`，值是 `"John"`。
+2. 第二个属性的名称是 `"age"`， 值是 `30`。
 
-The resulting `user` object can be imagined as a cabinet with two signed files labeled "name" and "age".
+由此产生的 `user` 对象可以想象为一个标有“名称”和”年龄“的两个签名文件的橱柜。
 
 ![user object](object-user.png)
 
-We can add, remove and read files from it any time.
+任何时间我们都可以从里面增加、删除、读取文件。
 
-Property values are accessible using the dot notation:
+属性值可以通过句点运算符来访问：
 
 ```js
-// get fields of the object:
+// 获取对象的字段
 alert( user.name ); // John
 alert( user.age ); // 30
 ```
 
-The value can be of any type. Let's add a boolean one:
+值可以是任何类型，我们来添加一个布尔值：
 
 ```js
 user.isAdmin = true;
@@ -61,7 +61,7 @@ user.isAdmin = true;
 
 ![user object 2](object-user-isadmin.png)
 
-To remove a property, we can use `delete` operator:
+我们可以使用 `delete` 操作符来删除一个属性：
 
 ```js
 delete user.age;
@@ -69,58 +69,57 @@ delete user.age;
 
 ![user object 3](object-user-delete.png)
 
-We can also use multiword property names, but then they must be quoted:
-
+我们同样可以使用多词的属性名，但是必须使用引号包裹：
 ```js
 let user = {
   name: "John",
   age: 30,
-  "likes birds": true  // multiword property name must be quoted
+  "likes birds": true  // 多词属性名必须使用引号包裹
 };
 ```
 
-![](object-user-props.png)
+![user props object](object-user-props.png)
 
 
-The last property in the list may end with a comma:
+列表中的最后一个属性可以使用逗号结尾：
 ```js
 let user = {
   name: "John",
   age: 30*!*,*/!*
 }
 ```
-That is called a "trailing" or "hanging" comma. Makes it easier to add/remove/move around properties, because all lines become alike.
+这被称为”尾随“或者”挂起“逗号。它使得添加、删除或者移动属性更加容易，因为所有的行变得相似了。
 
-## Square brackets
+## 方括号
 
-For multiword properties, the dot access doesn't work:
+对于多词属性，点访问将不能奏效：
 
 ```js run
-// this would give a syntax error
+// 将会报语法错误
 user.likes birds = true
 ```
 
-That's because the dot requires the key to be a valid variable identifier. That is: no spaces and other limitations.
+这是因为点符号要求键是有效的变量标识符，即：没有空格和其他限制字符。
 
-There's an alternative "square bracket notation" that works with any string:
-
+替代的”方括号表示法“可以与任何字符串一起使用：
 
 ```js run
 let user = {};
 
-// set
+// 设置
 user["likes birds"] = true;
 
-// get
+// 读取
 alert(user["likes birds"]); // true
 
-// delete
+// 删除
 delete user["likes birds"];
 ```
 
-Now everything is fine. Please note that the string inside the brackets is properly quoted (any type of quotes will do).
+现在世界都美好了。请注意，括号内的字符串被正确引用（任何类型的引号都可以）。
 
-Square brackets also provide a way to obtain the property name as the result of any expression -- as opposed to a literal string -- like from a variable as follows:
+方括号同样提供了一种支持任何表达式的结果作为属性名的方法，而不仅仅只是字符串的字面量，就像从变量中获取一样。如下所示：
+
 
 ```js
 let key = "likes birds";
@@ -129,9 +128,9 @@ let key = "likes birds";
 user[key] = true;
 ```
 
-Here, the variable `key` may be calculated at run-time or depend on the user input. And then we use it to access the property. That gives us a great deal of flexibility. The dot notation cannot be used in a similar way.
+这里的变量 `key` 可以在运行时计算或者通过用户输入得到，然后我们用它来访问属性。这给了我们很大的灵活性，可是点符号不能用类似的方式使用。
 
-For instance:
+例如：
 
 ```js run
 let user = {
@@ -141,45 +140,46 @@ let user = {
 
 let key = prompt("What do you want to know about the user?", "name");
 
-// access by variable
+// 使用变量访问
 alert( user[key] ); // John (if enter "name")
 ```
 
 
-### Computed properties
+### 计算属性
 
-We can use square brackets in an object literal. That's called *computed properties*.
+我们可以在对象字面量中使用方括号，这称为**计算属性**。
 
-For instance:
+例如：
 
 ```js run
 let fruit = prompt("Which fruit to buy?", "apple");
 
 let bag = {
 *!*
-  [fruit]: 5, // the name of the property is taken from the variable fruit
+  [fruit]: 5, // 属性的名称从变量 fruit 中取到
 */!*
 };
 
-alert( bag.apple ); // 5 if fruit="apple"
+alert( bag.apple ); // 5 如果 fruit="apple"
 ```
 
-The meaning of a computed property is simple: `[fruit]` means that the property name should be taken from `fruit`.
+计算属性的含义也很简单： `[fruit]` 意味着属性名应该取自 `fruit`.
 
-So, if a visitor enters `"apple"`, `bag` will become `{apple: 5}`.
+那么如果访问者输入 `"apple"`，`bag` 将变为 `{apple: 5}`。
 
-Essentially, that works the same as:
+本质上，它的工作原理和以下内容相同：
+
 ```js run
 let fruit = prompt("Which fruit to buy?", "apple");
 let bag = {};
 
-// take property name from the fruit variable
+// 从变量 fruit 中获取属性名称
 bag[fruit] = 5;
 ```
 
-...But looks nicer.
+...或许看起来更好点。
 
-We can use more complex expressions inside square brackets:
+我们可以再方括号中使用更复杂的表达式：
 
 ```js
 let fruit = 'apple';
@@ -193,8 +193,6 @@ Square brackets are much more powerful than the dot notation. They allow any pro
 So most of the time, when property names are known and simple, the dot is used. And if we need something more complex, then we switch to square brackets.
 
 
-
-````smart header="Reserved words are allowed as property names"
 A variable cannot have a name equal to one of language-reserved words like "for", "let", "return" etc.
 
 But for an object property, there's no such restriction. Any name is fine:
@@ -225,7 +223,6 @@ In that case the visitor may choose "__proto__" as the key, and the assignment l
 
 There is a way to make objects treat `__proto__` as a regular property, which we'll cover later, but first we need to know more about objects. 
 There's also another data structure [Map](info:map-set-weakmap-weakset), that we'll learn in the chapter <info:map-set-weakmap-weakset>, which supports arbitrary keys.
-````
 
 
 ## Property value shorthand
