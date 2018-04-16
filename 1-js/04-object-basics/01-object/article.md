@@ -1,26 +1,25 @@
 
-# Objects
+# 对象
+从 <info:types> 这章我们可知，在 JavaScript 中有七种语言类型。其中六种被称为“原始”，因为他们的值是单一的（无论是字符串还是数字或者其他）。
 
-As we know from the chapter <info:types>, there are seven language types in JavaScript. Six of them are called "primitive", because their values contain only a single thing (be it a string or a number or whatever).
+相反，对象用户存储各种数据更复杂实体的键控集合。在 JavaScript 中，对象几乎渗透了语言的方方面面。我们必须要在理解他们他们之后，再去深入到其他部分。
 
-In contrast, objects are used to store keyed collections of various data and more complex entities. In JavaScript, objects penetrate almost every aspect of the language. So we must understand them first before going in-depth anywhere else.
+使用长度不定的**属性**列表并用大括号包裹起来 `{...}` 就可以创建一个对象。属性是 “key: value”（键值对）的组合，其中 `key` 可以是一个字符串（同样可以称之为“属性名称”），`value` 可以为任何值。
 
-An object can be created with figure brackets `{…}` with an optional list of *properties*. A property is a "key: value" pair, where `key` is a string (also called a "property name"), and `value` can be anything.
+我们可以把一个对象想象成一个具有签名文件的橱柜。每一部分数据都可以通过键来存储到文件中，这样通过名称来查找文件或者添加和删除都易如反掌。
 
-We can imagine an object as a cabinet with signed files. Every piece of data is stored in its file by the key. It's easy to find a file by its name or add/remove a file.
+![object image file](object.png)
 
-![](object.png)
-
-An empty object ("empty cabinet") can be created using one of two syntaxes:
+下面两种语法都可以创建一个空对象（“空橱柜”）：
 
 ```js
-let user = new Object(); // "object constructor" syntax
-let user = {};  // "object literal" syntax
+let user = new Object(); // "object constructor" 语法
+let user = {};  // "object literal" 语法
 ```
 
 ![](object-user-empty.png)
 
-Usually, the figure brackets `{...}` are used. That declaration is called an *object literal*.
+通常使用括号 `{...}` 的声明被称为**对象字面量**。
 
 ## Literals and properties
 
